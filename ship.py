@@ -17,10 +17,15 @@ class Ship(pygame.sprite.Sprite):
         self.direction = pygame.Vector2(0, -1)
         self.original_image = image
         self.scale(scale)
+        self.update_image()
+
+    def update_image(self):
+        self.updated_image = pygame.transform.rotate(self.scaled_image, self.angle)
 
     def rotate(self, dt):
         self.angle += dt * PLAYER_ROTATE_SPEED
-        self.updated_image = pygame.transform.rotate(self.scaled_image, self.angle)
+        # creates a new surface with a scaled image each time this is called
+        # can we just rotate the surface or rect?
 
     def update(self, dt):
         keys = pygame.key.get_pressed()
@@ -30,6 +35,14 @@ class Ship(pygame.sprite.Sprite):
 
         if keys[pygame.K_d]:
             self.rotate(-dt)
+
+        if keys[pygame.K_w]:
+            pass
+
+        if keys[pygame.K_s]:
+            pass
+
+        self.update_image()
 
     def draw(self, screen):
         # need to update this to get rect
