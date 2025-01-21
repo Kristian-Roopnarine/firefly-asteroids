@@ -39,7 +39,7 @@ def main():
             firefly_position += forward * dt * 200
             rotated_rect = rotated_image.get_rect(center=firefly_position)
         if keys[pygame.K_s]:
-            forward = pygame.Vector2(0, -1).rotate(firefly_angle)
+            forward = pygame.Vector2(0, -1).rotate(-firefly_angle)
             firefly_position += forward * -dt * 200
             rotated_rect = rotated_image.get_rect(center=firefly_position)
 

@@ -10,7 +10,6 @@ class SpriteSheet:
         except pygame.error as message:
             print(f"Unable to load spritesheet image {filename}")
             raise SystemExit(message)
-        print(self.sheet)
 
     def image_at(self, rectangle, colorkey=None):
         rect = pygame.Rect(rectangle)
