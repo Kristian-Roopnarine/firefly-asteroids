@@ -1,7 +1,5 @@
 import pygame
 
-from constants import SCREEN_HEIGHT, SCREEN_WIDTH
-
 
 class SpriteSheet:
     def __init__(self, filename):

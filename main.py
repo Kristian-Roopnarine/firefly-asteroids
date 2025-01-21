@@ -1,21 +1,20 @@
 import pygame
-from constants import *
+from bullet import Bullet
 from ship import Ship
-from sprite_sheet import SpriteSheet
-
-# save assets in a folder
-# load assets here
+from sprite_images import firefly_image
+from constants import *
 
 
 # https://stackoverflow.com/questions/4183208/how-do-i-rotate-an-image-around-its-center-using-pygame/54714144#54714144
 def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-    firefly_sheet = SpriteSheet("./assets/firefly-32-down.png")
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
-    firefly_image = firefly_sheet.image_at((0, 0, 32, 32))
+    bullets = pygame.sprite.Group()
+    Bullet.containers = (bullets, updatable, drawable)
     Ship.containers = (updatable, drawable)
-    firefly = Ship(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, firefly_image, scale=2)
+    # Bullet.containers = (bullets, updatable, drawable)
+    firefly = Ship(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, firefly_image, scale=3)
     dt = 0
     clock = pygame.time.Clock()
 
