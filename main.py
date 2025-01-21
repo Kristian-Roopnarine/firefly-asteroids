@@ -13,14 +13,14 @@ def main():
     image = firefly_sheet.image_at((0, 0, 32, 32))
     firefly_position = pygame.Vector2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
     firefly_angle = 0
-    big_image = pygame.transform.scale2x(image)
+    big_image = pygame.transform.scale_by(image, 3)
     rotated_image = pygame.transform.rotate(big_image, firefly_angle)
     rotated_rect = rotated_image.get_rect(center=firefly_position)
     dt = 0
     clock = pygame.time.Clock()
 
     while True:
-        screen.fill("white")
+        screen.fill("black")
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
@@ -35,15 +35,16 @@ def main():
             rotated_image = pygame.transform.rotate(big_image, firefly_angle)
             rotated_rect = rotated_image.get_rect(center=firefly_position)
         if keys[pygame.K_w]:
-            forward = pygame.Vector2(0, -1)
+            forward = pygame.Vector2(0, -1).rotate(-firefly_angle)
             firefly_position += forward * dt * 200
             rotated_rect = rotated_image.get_rect(center=firefly_position)
         if keys[pygame.K_s]:
-            forward = pygame.Vector2(0, -1)
+            forward = pygame.Vector2(0, -1).rotate(firefly_angle)
             firefly_position += forward * -dt * 200
             rotated_rect = rotated_image.get_rect(center=firefly_position)
 
         screen.blit(rotated_image, rotated_rect)
+        pygame.draw.line(screen, "white", (0, 0), firefly_position)
         pygame.display.flip()
         dt = clock.tick(60) / 1000
 
