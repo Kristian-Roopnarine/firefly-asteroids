@@ -84,16 +84,14 @@ class Ship(pygame.sprite.Sprite):
                 self.position.x,
                 self.position.y,
                 pygame.transform.rotate(bullet_img, self.angle),
-                scale=4,
             )
             # why does need dt need to be negative???
             b.velocity = self.forward.rotate(-self.angle) * 300 * -dt
             self.shoot_cooldown = PLAYER_SHOOT_COOLDOWN
 
-        self.update_image()
-
     def draw(self, screen):
         # need to update this to get rect
+        self.update_image()
         screen.blit(
             self.updated_image, self.updated_image.get_rect(center=self.position)
         )

@@ -1,4 +1,6 @@
 import pygame
+from asteroid_field import AsteroidField
+from asteroids import Asteroid
 from bullet import Bullet
 from ship import Ship
 from sprite_images import firefly_image
@@ -11,10 +13,15 @@ def main():
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
     bullets = pygame.sprite.Group()
+    asteroids = pygame.sprite.Group()
+    AsteroidField.containers = (updatable,)
     Bullet.containers = (bullets, updatable, drawable)
     Ship.containers = (updatable, drawable)
-    # Bullet.containers = (bullets, updatable, drawable)
+    Asteroid.containers = (asteroids, updatable, drawable)
+
     firefly = Ship(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, firefly_image, scale=3)
+    asteroid_field = AsteroidField()
+
     dt = 0
     clock = pygame.time.Clock()
 
