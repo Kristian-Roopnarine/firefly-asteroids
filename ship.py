@@ -95,6 +95,7 @@ class Ship(pygame.sprite.Sprite):
         screen.blit(
             self.updated_image, self.updated_image.get_rect(center=self.position)
         )
+        """
         pygame.draw.rect(
             screen, "red", self.updated_image.get_rect(center=self.position), 2
         )
@@ -109,6 +110,8 @@ class Ship(pygame.sprite.Sprite):
             ),
             "red",
         )
+        
+        """
 
     def scale(self, factor):
         self.scaled_image = pygame.transform.scale_by(self.original_image, factor)

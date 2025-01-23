@@ -34,6 +34,13 @@ def main():
         for u in updatable:
             u.update(dt)
 
+        for b in bullets:
+            for a in asteroids:
+                if b.has_collided(a.scaled_rect):
+                    print("bullet collided")
+                    a.kill()
+                    b.kill()
+
         for d in drawable:
             d.draw(screen)
 

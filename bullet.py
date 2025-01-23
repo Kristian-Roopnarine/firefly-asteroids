@@ -10,7 +10,7 @@ class Bullet(pygame.sprite.Sprite):
         self.position = pygame.Vector2(x, y)
         self.original_image = img
         self.velocity = pygame.Vector2(0, 0)
-        self.scale(scale)
+        self.scaled_image = pygame.transform.scale_by(self.original_image, scale)
 
     def update(self, dt):
         self.position += self.velocity
@@ -18,5 +18,5 @@ class Bullet(pygame.sprite.Sprite):
     def draw(self, screen):
         screen.blit(self.scaled_image, self.scaled_image.get_rect(center=self.position))
 
-    def scale(self, factor):
-        self.scaled_image = pygame.transform.scale_by(self.original_image, factor)
+    def has_collided(self, obj: pygame.Rect):
+        return self.scaled_image.get_rect(center=self.position).colliderect(obj)
